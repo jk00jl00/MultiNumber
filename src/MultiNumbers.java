@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class MultiNumbers {
     public static ArrayList<Long> numList = new ArrayList<>();
     public static ArrayList<Integer> intList = new ArrayList<>();
+    public static int goneThrough = 0;
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
@@ -19,12 +20,13 @@ public class MultiNumbers {
     }
 
     public static long getX(long number, int b){
+        goneThrough++;
         int[] xArray = getFactors(number, b);
-        if(xArray[0] == 0){
+        if(xArray[0] == 0 && goneThrough > 3){
             return 0;
         }
         long xIs = putTogetherNumber(xArray, b);
-        if((xIs != (long)0)){
+        if(xIs != 0 || goneThrough < 4){
             xIs = getX(number, b);
         }
         if(xIs == 0) {
